@@ -95,7 +95,7 @@
     <?php } else if ( strlen($_SERVER["QUERY_STRING"]) !== 0 ) { ?>
       <div id="streaming">
         <video id="localVideo" autoplay></video>
-        <video id="remoteVideo" autoplay controls></video> 
+        <video id="remoteVideo" autoplay></video> 
         <?php 
           $lnk = explode("?", $_SERVER["REQUEST_URI"]);
           $uri = $_SERVER["REQUEST_SCHEME"] . "://". $_SERVER["HTTP_HOST"]. $lnk[0]; 
