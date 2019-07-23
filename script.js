@@ -1,18 +1,13 @@
 var remoteVideo = document.querySelector('#remoteVideo');
 var localVideo  = document.querySelector('#localVideo');
 
-// Generate random room name if needed
-// if (!location.hash) {
-//   location.hash = "aaaa";
-// }
-
 const getSrc    = window.location.search;
 const roomHash1  = getSrc.replace('?', '');
 const roomHash  = roomHash1.replace('&i=1', '');
 console.log(roomHash);
-// TODO: Replace with your own channel ID
+
 const drone = new ScaleDrone('sAYsnmDrO0rYAPVG');
-// Room name needs to be prefixed with 'observable-'
+
 const roomName = 'observable-' + roomHash;
 const configuration = {
   iceServers: [{
