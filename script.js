@@ -1,21 +1,21 @@
-var remoteVideo = document.querySelector('#remoteVideo');
-var localVideo  = document.querySelector('#localVideo');
+let remoteVideo = document.querySelector('#remoteVideo'),
+    localVideo  = document.querySelector('#localVideo');
 
-const getSrc    = window.location.search;
-const roomHash1  = getSrc.replace('?', '');
-const roomHash  = roomHash1.replace('&i=1', '');
-console.log(roomHash);
 
-const drone = new ScaleDrone('sAYsnmDrO0rYAPVG');
+const getSrc      = window.location.search,
+      roomHash1   = getSrc.replace('?', ''),
+      roomHash    = roomHash1.replace('&i=1', '');
 
-const roomName = 'observable-' + roomHash;
+const drone     = new ScaleDrone('sAYsnmDrO0rYAPVG'),
+      roomName  = 'observable-' + roomHash;
+
 const configuration = {
   iceServers: [{
     urls: 'stun:stun.l.google.com:19302'
   }]
 };
-let room;
-let pc;
+
+let room, pc;
 
 document.querySelector('#link').innerHTML = window.location;
 
@@ -35,9 +35,8 @@ function onSuccess(e) {
   setTimeout(function() {
     dv.remove();
   }, 2000);
-
-  
 };
+
 function onError(er) {
   console.log(er);
 };
@@ -56,12 +55,10 @@ drone.on('open', error => {
 
   room.on('members', members => {
     const isOfferer = members.length == 2;
-    console.log(isOfferer);
     startWebRTC(isOfferer);
   });
 });
 
-// Send signaling data via Scaledrone
 function sendMessage(message) {
   drone.publish({
     room: roomName,
